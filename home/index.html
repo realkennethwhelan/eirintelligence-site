@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eirintelligence – Intelligent Robots That Actually Work For You</title>
+  <meta name="description" content="Eirintelligence designs AI-powered task robots for home and business — robotic lawn mowers, pool skimmers, and more. Smart, sustainable, and built to work." />
+  <meta property="og:title" content="Eirintelligence – Intelligent Robots That Actually Work For You" />
+  <meta property="og:description" content="AI-powered task robots for home and business. Purpose-built to do the jobs you'd rather skip." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #6DC63E;
+      --green-dark: #55A82E;
+      --green-light:#f0fdf4;
+      --cyan:       #00AADD;
+      --dark:       #0d0d0d;
+      --dark-2:     #1a1a1a;
+      --dark-3:     #242424;
+      --mid:        #444;
+      --light-gray: #f6f6f6;
+      --border:     #e8e8e8;
+      --text:       #111;
+      --muted:      #666;
+      --white:      #fff;
+      --font:       'Assistant', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 28px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center;
+      text-decoration: none; gap: 0; flex-shrink: 0;
+    }
+    .logo-eir {
+      background: var(--green); color: #fff;
+      font-weight: 800; font-size: 20px;
+      width: 36px; height: 36px;
+      display: inline-flex; align-items: center; justify-content: center;
+      letter-spacing: -2px; padding-left: 1px;
+      flex-shrink: 0; line-height: 1;
+    }
+    .logo-int {
+      color: var(--cyan); font-size: 22px;
+      font-weight: 700; padding-left: 4px;
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex; align-items: center;
+      gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-size: 15px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-shop {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--dark); color: #fff;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      padding: 9px 20px; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .nav-shop:hover { background: var(--green); color: var(--dark); }
+    .nav-shop svg { transition: transform 0.2s; }
+    .nav-shop:hover svg { transform: translateX(2px); }
+
+    /* Mobile hamburger */
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 68px; left: 0; right: 0; bottom: 0;
+      background: #fff; z-index: 199;
+      padding: 32px 28px;
+      flex-direction: column; gap: 8px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--text);
+      font-size: 22px; font-weight: 600;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--green); }
+    .mobile-menu .mobile-shop {
+      margin-top: 24px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--dark); color: #fff;
+      font-size: 16px; font-weight: 700;
+      padding: 14px 28px; border-radius: 4px;
+      width: fit-content;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      padding: 68px 0 0;
+      display: flex; align-items: center;
+      overflow: hidden; position: relative;
+    }
+    .hero-glow-1 {
+      position: absolute; top: -150px; right: -100px;
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(0,170,220,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(109,198,62,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 56px 28px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 20px; display: block;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4vw, 54px);
+      font-weight: 800; line-height: 1.12;
+      color: var(--white); margin-bottom: 24px;
+      letter-spacing: -1.5px;
+    }
+    .hero h1 em { color: var(--green); font-style: normal; }
+    .hero-p {
+      font-size: 17px; color: rgba(255,255,255,0.6);
+      max-width: 460px; margin-bottom: 44px; line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-green {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: var(--dark);
+      text-decoration: none; font-size: 15px; font-weight: 700;
+      padding: 14px 28px; border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-green:hover { background: #7DD64E; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.85);
+      text-decoration: none; font-size: 15px; font-weight: 600;
+      padding: 14px 28px; border-radius: 4px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+    .hero-image-wrap {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero-image-halo {
+      position: absolute;
+      width: 520px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,170,220,0.24) 0%, rgba(0,100,180,0.12) 55%, transparent 75%);
+      border-radius: 50%;
+    }
+    /* Pool water ripple rings */
+    .pool-ripple {
+      position: absolute; border-radius: 50%;
+      border: 1.5px solid rgba(0,190,230,0.25);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ripple-out 4s ease-out infinite;
+    }
+    .pool-ripple:nth-child(2) { animation-delay: 1.3s; }
+    .pool-ripple:nth-child(3) { animation-delay: 2.6s; }
+    @keyframes ripple-out {
+      0%   { width: 80px; height: 50px; opacity: 0.6; }
+      100% { width: 520px; height: 320px; opacity: 0; }
+    }
+    /* Water surface shimmer line */
+    .pool-waterline {
+      position: absolute; bottom: 28%; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,200,240,0.35) 30%, rgba(0,200,240,0.5) 50%, rgba(0,200,240,0.35) 70%, transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+    .hero-image-wrap img {
+      width: 100%; max-width: 500px;
+      position: relative; z-index: 1;
+      animation: float 5s ease-in-out infinite;
+      filter: drop-shadow(0 28px 56px rgba(0,170,220,0.35));
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* ─────────────────────────────────────────
+       STATS BAND
+    ───────────────────────────────────────── */
+    .stats-band {
+      background: var(--dark-2);
+      border-bottom: 1px solid #232323;
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 28px;
+      display: flex; align-items: stretch; flex-wrap: wrap;
+    }
+    .stat-block {
+      flex: 1 1 180px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 22px 24px;
+      border-right: 1px solid #282828;
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-ico {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(109,198,62,0.1); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat-ico svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; }
+    .stat-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); }
+
+    /* ─────────────────────────────────────────
+       SHARED SECTION STYLES
+    ───────────────────────────────────────── */
+    section { padding: 96px 0; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .sec-label {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 14px;
+    }
+    .sec-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.5px; margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 17px; color: var(--muted);
+      max-width: 560px; line-height: 1.75;
+    }
+    .sec-header-center { text-align: center; }
+    .sec-header-center .sec-sub { margin: 0 auto 60px; }
+    .sec-header { margin-bottom: 56px; }
+
+    /* fade-in */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ─────────────────────────────────────────
+       PRODUCTS
+    ───────────────────────────────────────── */
+    #products { background: var(--light-gray); }
+    .products-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .prod-card {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .prod-card:hover {
+      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+    }
+    .prod-img {
+      background: #f0f0f0;
+      height: 290px; padding: 40px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .prod-img img {
+      max-height: 210px; max-width: 100%;
+      object-fit: contain;
+    }
+    .prod-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+    .prod-cat {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
+    }
+    .prod-badge-sold {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      background: #fee2e2; color: #dc2626;
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .prod-badge-stock {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      background: #dcfce7; color: #16a34a;
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
+    }
+    .prod-name { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .prod-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+    .prod-features { list-style: none; margin-bottom: 28px; flex: 1; }
+    .prod-features li {
+      font-size: 13px; color: var(--muted);
+      padding: 5px 0; display: flex; align-items: center; gap: 9px;
+    }
+    .prod-features li::before {
+      content: ''; display: block; width: 6px; height: 6px;
+      background: var(--green); border-radius: 50%; flex-shrink: 0;
+    }
+    .prod-footer {
+      display: flex; align-items: center;
+      justify-content: flex-start; gap: 16px;
+      padding-top: 20px; border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--dark); color: #fff;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      padding: 11px 22px; border-radius: 4px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .btn-dark:hover { background: var(--green); color: var(--dark); }
+
+    /* ─────────────────────────────────────────
+       HOW IT WORKS
+    ───────────────────────────────────────── */
+    #how { background: var(--white); }
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 48px; position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; top: 35px;
+      left: calc(16.66% + 16px); right: calc(16.66% + 16px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: var(--dark); color: #fff;
+      font-size: 24px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px; position: relative; z-index: 1;
+    }
+    .step-num.accent { background: var(--green); color: var(--dark); }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ─────────────────────────────────────────
+       TECHNOLOGY
+    ───────────────────────────────────────── */
+    #tech { background: var(--dark); }
+    #tech .sec-label { color: var(--green); }
+    #tech .sec-title { color: var(--white); }
+    #tech .sec-sub { color: rgba(255,255,255,0.5); margin-bottom: 60px; }
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .tech-card {
+      background: var(--dark-2); border: 1px solid #252525;
+      border-radius: 10px; padding: 32px 28px;
+      transition: border-color 0.3s, transform 0.25s;
+    }
+    .tech-card:hover { border-color: var(--green); transform: translateY(-4px); }
+    .tech-ico {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(109,198,62,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .tech-ico svg { width: 22px; height: 22px; stroke: var(--green); fill: none; stroke-width: 2; }
+    .tech-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .tech-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+    /* ─────────────────────────────────────────
+       HOME & BUSINESS
+    ───────────────────────────────────────── */
+    #audience { background: var(--light-gray); }
+    .audience-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .aud-card {
+      border-radius: 12px; padding: 48px;
+      position: relative; overflow: hidden;
+    }
+    .aud-home {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid #bbf7d0;
+    }
+    .aud-biz {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #bfdbfe;
+    }
+    .aud-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 16px; display: block;
+    }
+    .aud-home .aud-tag { color: #15803d; }
+    .aud-biz  .aud-tag { color: #1d4ed8; }
+    .aud-card h3 { font-size: 26px; font-weight: 800; margin-bottom: 14px; line-height: 1.2; }
+    .aud-card p { font-size: 15px; color: var(--mid); line-height: 1.75; margin-bottom: 24px; }
+    .aud-list { list-style: none; margin-bottom: 32px; }
+    .aud-list li {
+      font-size: 14px; color: var(--mid);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .aud-list li:last-child { border-bottom: none; }
+    .aud-home .aud-list li::before { content: '✓'; color: #16a34a; font-weight: 700; font-size: 13px; }
+    .aud-biz  .aud-list li::before { content: '✓'; color: #2563eb; font-weight: 700; font-size: 13px; }
+    .btn-green-sm {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green); color: var(--dark);
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      padding: 11px 22px; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .btn-green-sm:hover { background: #7DD64E; }
+
+    /* ─────────────────────────────────────────
+       CTA BANNER
+    ───────────────────────────────────────── */
+    .cta-section {
+      background: var(--green); padding: 88px 0;
+    }
+    .cta-inner { max-width: 800px; margin: 0 auto; padding: 0 28px; text-align: center; }
+    .cta-inner h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800; color: var(--dark);
+      margin-bottom: 14px; letter-spacing: -0.5px;
+    }
+    .cta-inner p {
+      font-size: 17px; color: rgba(0,0,0,0.55);
+      margin-bottom: 44px; line-height: 1.7;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-dark {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--dark); color: #fff;
+      text-decoration: none; font-size: 15px; font-weight: 700;
+      padding: 14px 32px; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .btn-cta-dark:hover { background: #222; }
+    .btn-cta-outline {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; color: var(--dark);
+      text-decoration: none; font-size: 15px; font-weight: 600;
+      padding: 14px 32px; border-radius: 4px;
+      border: 2px solid rgba(0,0,0,0.3);
+      transition: border-color 0.2s;
+    }
+    .btn-cta-outline:hover { border-color: var(--dark); }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--dark); color: #fff;
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px; padding-bottom: 48px;
+      border-bottom: 1px solid #242424;
+    }
+    .footer-brand .logo { display: inline-flex; }
+    .footer-brand p {
+      font-size: 14px; color: rgba(255,255,255,0.4);
+      margin-top: 16px; line-height: 1.75; max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a {
+      font-size: 14px; color: rgba(255,255,255,0.6);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .footer-bottom p, .footer-bottom a {
+      font-size: 13px; color: rgba(255,255,255,0.28);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.55); }
+    .footer-sep { color: rgba(255,255,255,0.15); }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+      .hero-p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-image-wrap img { max-width: 380px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; gap: 36px; }
+      .steps::before { display: none; }
+      .tech-grid { grid-template-columns: 1fr 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-shop { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 64px 0; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .stat-block { flex: 1 1 140px; padding: 18px 16px; }
+      .aud-card { padding: 32px 24px; }
+      .hero-image-wrap img { max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="https://eirintelligence.com" class="logo">
+      <img src="assets/logo.svg" alt="EIRintelligence" height="36">
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://shop.eirintelligence.com/">Shop</a></li>
+      <li><a href="https://shop.eirintelligence.com/collections/all">Products</a></li>
+      <li><a href="https://shop.eirintelligence.com/pages/contact">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://shop.eirintelligence.com/collections/all" class="nav-shop">
+        Shop Now
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="hamburger" id="ham" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mob">
+  <a href="https://shop.eirintelligence.com/">Shop</a>
+  <a href="https://shop.eirintelligence.com/collections/all">Products</a>
+  <a href="https://shop.eirintelligence.com/pages/contact">Contact</a>
+  <a href="about.html">About</a>
+  <a href="https://shop.eirintelligence.com/collections/all" class="mobile-shop">
+    Shop Now →
+  </a>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Eirintelligence Global</span>
+      <h1>Intelligent robots that<br><em>actually work</em> for you.</h1>
+      <p class="hero-p">AI-powered task robots built for real life — not sci-fi. From your lawn to your pool, we make the chores disappear so you can focus on what matters.</p>
+      <div class="hero-actions">
+        <a href="https://shop.eirintelligence.com/collections/all" class="btn-green">
+          Explore Products
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#products" class="btn-ghost">See Our Robots ↓</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-image-halo"></div>
+      <div class="pool-ripple"></div>
+      <div class="pool-ripple"></div>
+      <div class="pool-ripple"></div>
+      <div class="pool-waterline"></div>
+      <img
+        src="https://shop.eirintelligence.com/cdn/shop/files/6.png?v=1772658380&width=800"
+        alt="Eirintelligence Robotic Pool Skimmer"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STATS BAND ═══════════════════ -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-block">
+      <div class="stat-ico">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+      <span class="stat-label">AI-Powered Navigation</span>
+    </div>
+    <div class="stat-block">
+      <div class="stat-ico">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v20M2 12h20"/></svg>
+      </div>
+      <span class="stat-label">Ships to the US &amp; Worldwide</span>
+    </div>
+    <div class="stat-block">
+      <div class="stat-ico">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="stat-label">European Safety Standards</span>
+    </div>
+    <div class="stat-block">
+      <div class="stat-ico">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <span class="stat-label">Headquartered in Ireland</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PRODUCTS ═══════════════════ -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-header-center fade-in">
+      <span class="sec-label">Our Robots</span>
+      <h2 class="sec-title">Built to do the work you'd rather skip</h2>
+      <p class="sec-sub">Each Eirintelligence robot is purpose-built for one task — and it does that task brilliantly.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- Robotic Pool Skimmer -->
+      <div class="prod-card fade-in">
+        <div class="prod-img" style="background:#e8f4f8;">
+          <img
+            src="https://shop.eirintelligence.com/cdn/shop/files/2.png?v=1772658380&width=600"
+            alt="Eirintelligence Robotic Pool Skimmer" loading="lazy"
+          />
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Pool &amp; Pond Care</span>
+          <span class="prod-badge-stock">In Stock</span>
+          <h3 class="prod-name">Robotic Pool Skimmer</h3>
+          <p class="prod-desc">Solar-powered surface cleaner with 20+ hours of runtime. Keeps your pool crystal clear every day without any effort from you.</p>
+          <ul class="prod-features">
+            <li>10W solar charging + Type-C backup</li>
+            <li>20+ hours continuous battery life</li>
+            <li>Ultrasonic anti-collision system</li>
+            <li>Bluetooth &amp; App remote control (30m range)</li>
+            <li>IPX7 waterproof construction</li>
+            <li>Eco-friendly — near-zero running costs</li>
+          </ul>
+          <div class="prod-footer">
+            <a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-pool-skimmer" class="btn-dark">
+              Shop Now →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Robotic Lawn Mower -->
+      <div class="prod-card fade-in">
+        <div class="prod-img">
+          <img
+            src="https://shop.eirintelligence.com/cdn/shop/files/3_f63afb81-3d9f-4c7f-8267-4c05a845cd56.png?v=1772659058&width=600"
+            alt="Eirintelligence Robotic Lawn Mower" loading="lazy"
+          />
+        </div>
+        <div class="prod-body">
+          <span class="prod-cat">Lawn Care</span>
+          <span class="prod-badge-sold">Sold Out — Back Soon</span>
+          <h3 class="prod-name">Robotic Lawn Mower</h3>
+          <p class="prod-desc">RTK precision mowing with centimetre-level accuracy. Covers up to 4,000 m² completely autonomously — rain or shine, even while you sleep.</p>
+          <ul class="prod-features">
+            <li>RTK navigation with 2cm precision</li>
+            <li>AI-powered 3D ToF obstacle avoidance</li>
+            <li>App control &amp; multi-zone scheduling</li>
+            <li>IPX6 waterproof + rain auto-return sensor</li>
+            <li>Adjustable cut height 25–60mm</li>
+            <li>Whisper-quiet — works day or night</li>
+          </ul>
+          <div class="prod-footer">
+            <a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-lawn-mower" class="btn-dark">
+              View Details →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:48px;" class="fade-in">
+      <a href="https://shop.eirintelligence.com/collections/all" class="btn-green">
+        View All Products →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-header-center fade-in">
+      <span class="sec-label">How It Works</span>
+      <h2 class="sec-title">Set it. Schedule it. Forget it.</h2>
+      <p class="sec-sub">Every Eirintelligence robot is designed to be running in minutes, then completely hands-off from there.</p>
+    </div>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <h3>Place &amp; Connect</h3>
+        <p>Unbox, place your robot, and pair it with the Eirintelligence app in minutes. No complex installation, no perimeter wires required.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num accent">2</div>
+        <h3>Set Your Schedule</h3>
+        <p>Define zones, set cleaning times, and customise preferences from your phone — from anywhere in the world, at any time.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <h3>Relax &amp; Enjoy</h3>
+        <p>Your robot navigates autonomously, avoids all obstacles, returns to base when done, and sends you a status report. Job done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TECHNOLOGY ═══════════════════ -->
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-header fade-in">
+      <span class="sec-label">Technology</span>
+      <h2 class="sec-title" style="color:#fff;">The intelligence inside</h2>
+      <p class="sec-sub">Proprietary AI and sensor systems engineered for real-world performance — not lab conditions.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <h3>RTK Precision Navigation</h3>
+        <p>Real-time kinematic GPS positioning delivers 2cm accuracy. Your robot always knows exactly where it is and optimises every route.</p>
+      </div>
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>AI 3D Obstacle Avoidance</h3>
+        <p>Time-of-Flight and ultrasonic sensors work together to detect and avoid obstacles in real time — pets, toys, furniture, and more.</p>
+      </div>
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+        </div>
+        <h3>Full App Control</h3>
+        <p>Schedule, monitor, and manage your robots from anywhere via the mobile app. Set zones, track progress, and receive real-time alerts.</p>
+      </div>
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/></svg>
+        </div>
+        <h3>25% Longer Battery Life</h3>
+        <p>LiFePO4 and automotive-grade Li-Ion cells with faster charging than any leading competitor. Run longer, charge faster, last longer.</p>
+      </div>
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg>
+        </div>
+        <h3>Auto Return &amp; Resume</h3>
+        <p>Automatically docks when battery is low, then resumes from the exact same spot. No missed coverage, ever.</p>
+      </div>
+      <div class="tech-card fade-in">
+        <div class="tech-ico">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <h3>Solar &amp; Sustainable Power</h3>
+        <p>Our pool skimmer runs on integrated solar panels. Eco-friendly operation with near-zero running costs and a minimal carbon footprint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOME & BUSINESS ═══════════════════ -->
+<section id="audience">
+  <div class="wrap">
+    <div class="sec-header-center fade-in">
+      <span class="sec-label">Who It's For</span>
+      <h2 class="sec-title">Designed for home. Scaled for business.</h2>
+      <p class="sec-sub">Whether you're a homeowner wanting a perfect garden or a hotel manager who needs spotless facilities every day — we have a robot for you.</p>
+    </div>
+    <div class="audience-grid">
+      <div class="aud-card aud-home fade-in">
+        <span class="aud-tag">For Home</span>
+        <h3>Your home, on autopilot.</h3>
+        <p>Spend your weekends doing what you love — not maintaining your yard or skimming your pool. Eirintelligence robots handle the outdoor chores quietly and reliably, every single day.</p>
+        <ul class="aud-list">
+          <li>Fully automated lawn mowing — no wires, no fuss</li>
+          <li>Pool surface cleaning on a daily schedule</li>
+          <li>Control and monitor from anywhere in the world</li>
+          <li>Whisper-quiet — won't disturb neighbours</li>
+          <li>Safe around children and pets</li>
+        </ul>
+        <a href="https://shop.eirintelligence.com/collections/all" class="btn-green-sm">Shop for Home →</a>
+      </div>
+      <div class="aud-card aud-biz fade-in">
+        <span class="aud-tag">For Business</span>
+        <h3>Reduce costs. Raise standards.</h3>
+        <p>Hotels, resorts, golf clubs, and commercial properties use Eirintelligence robots to maintain their grounds and water features to the highest standard — with significantly less staff overhead.</p>
+        <ul class="aud-list">
+          <li>Multi-zone scheduling for large properties</li>
+          <li>Consistent results, 7 days a week</li>
+          <li>Measurable reduction in labour costs</li>
+          <li>European safety certified for commercial use</li>
+          <li>Dedicated business support &amp; service</li>
+        </ul>
+        <a href="https://shop.eirintelligence.com/pages/contact" class="btn-green-sm">Get in Touch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA BANNER ═══════════════════ -->
+<div class="cta-section">
+  <div class="cta-inner fade-in">
+    <h2>Ready to put a robot to work?</h2>
+    <p>Explore our current lineup and find the right robot for your home or business — with free global shipping available.</p>
+    <div class="cta-btns">
+      <a href="https://shop.eirintelligence.com/collections/all" class="btn-cta-dark">
+        Shop All Products →
+      </a>
+      <a href="https://shop.eirintelligence.com/pages/contact" class="btn-cta-outline">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img src="assets/logo.svg" alt="EIRintelligence" height="36">
+        </a>
+        <p>AI-powered task robots for home and business. Headquartered in Ireland, serving customers worldwide with intelligent, sustainable automation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="https://shop.eirintelligence.com/">Store Home</a></li>
+          <li><a href="https://shop.eirintelligence.com/collections/all">All Products</a></li>
+          <li><a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-lawn-mower">Robotic Lawn Mower</a></li>
+          <li><a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-pool-skimmer">Robotic Pool Skimmer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="https://shop.eirintelligence.com/pages/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="https://shop.eirintelligence.com/pages/contact">Get Support</a></li>
+          <li><a href="https://shop.eirintelligence.com/pages/contact">Business Enquiries</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Eirintelligence Global, Inc. All rights reserved.</p>
+      <p>
+        Ireland &amp; US markets
+        <span class="footer-sep">&nbsp;·&nbsp;</span>
+        <a href="https://shop.eirintelligence.com/">shop.eirintelligence.com</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile hamburger
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  mob.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
