@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" width="760" height="160" role="img" aria-label="EIRintelligence">
-  <!-- Left: green square -->
-  <rect x="0" y="0" width="160" height="160" fill="#6DC63E"/>
-  <text x="80" y="115" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#ffffff" text-anchor="middle" letter-spacing="-2">EIR</text>
-  <!-- Right: white background, intelligence lowercase -->
-  <rect x="160" y="0" width="600" height="160" fill="#ffffff"/>
-  <text x="178" y="115" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#00BFFF" text-anchor="start" letter-spacing="-2">intelligence</text>
-</svg>
