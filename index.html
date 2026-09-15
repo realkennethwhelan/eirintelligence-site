@@ -3,1002 +3,573 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eirintelligence – Intelligent Robots That Actually Work For You</title>
-  <meta name="description" content="Eirintelligence designs AI-powered task robots for home and business — robotic lawn mowers, pool skimmers, and more. Smart, sustainable, and built to work." />
-  <meta property="og:title" content="Eirintelligence – Intelligent Robots That Actually Work For You" />
-  <meta property="og:description" content="AI-powered task robots for home and business. Purpose-built to do the jobs you'd rather skip." />
+  <title>Eirintelligence Global | U.S. Semiconductor Solutions Provider</title>
+  <meta name="description" content="Eirintelligence Global is a U.S.-based semiconductor solutions provider — sourcing components from American manufacturers and delivering distribution, technical support, and supply chain services to industrial customers worldwide." />
+  <meta property="og:title" content="Eirintelligence Global | U.S. Semiconductor Solutions Provider" />
+  <meta property="og:description" content="Sourcing semiconductor components from U.S. manufacturers and delivering distribution, technical solutions, and supply chain services to industrial customers worldwide." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green:      #6DC63E;
-      --green-dark: #55A82E;
-      --green-light:#f0fdf4;
-      --cyan:       #00AADD;
-      --dark:       #0d0d0d;
-      --dark-2:     #1a1a1a;
-      --dark-3:     #242424;
-      --mid:        #444;
-      --light-gray: #f6f6f6;
-      --border:     #e8e8e8;
-      --text:       #111;
-      --muted:      #666;
-      --white:      #fff;
-      --font:       'Assistant', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─────────────────────────────────────────
-       NAV
-    ───────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      transition: box-shadow 0.3s;
-    }
-    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 28px; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo {
-      display: flex; align-items: center;
-      text-decoration: none; gap: 0; flex-shrink: 0;
-    }
-    .logo-eir {
-      background: var(--green); color: #fff;
-      font-weight: 800; font-size: 20px;
-      width: 36px; height: 36px;
-      display: inline-flex; align-items: center; justify-content: center;
-      letter-spacing: -2px; padding-left: 1px;
-      flex-shrink: 0; line-height: 1;
-    }
-    .logo-int {
-      color: var(--cyan); font-size: 22px;
-      font-weight: 700; padding-left: 4px;
-      line-height: 1;
-    }
-    .nav-links {
-      display: flex; align-items: center;
-      gap: 32px; list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none; color: var(--text);
-      font-size: 15px; font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--green); }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-shop {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--dark); color: #fff;
-      text-decoration: none; font-size: 14px; font-weight: 700;
-      padding: 9px 20px; border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .nav-shop:hover { background: var(--green); color: var(--dark); }
-    .nav-shop svg { transition: transform 0.2s; }
-    .nav-shop:hover svg { transform: translateX(2px); }
-
-    /* Mobile hamburger */
-    .hamburger {
-      display: none; flex-direction: column;
-      gap: 5px; cursor: pointer;
-      background: none; border: none; padding: 6px;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text); border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    .mobile-menu {
-      display: none; position: fixed;
-      top: 68px; left: 0; right: 0; bottom: 0;
-      background: #fff; z-index: 199;
-      padding: 32px 28px;
-      flex-direction: column; gap: 8px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--text);
-      font-size: 22px; font-weight: 600;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--green); }
-    .mobile-menu .mobile-shop {
-      margin-top: 24px;
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--dark); color: #fff;
-      font-size: 16px; font-weight: 700;
-      padding: 14px 28px; border-radius: 4px;
-      width: fit-content;
-    }
-
-    /* ─────────────────────────────────────────
-       HERO
-    ───────────────────────────────────────── */
+    /* ── Hero ── */
     .hero {
-      background: var(--dark);
-      padding: 68px 0 0;
-      display: flex; align-items: center;
-      overflow: hidden; position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(140deg, #0d0d0d 0%, #1a1a1a 55%, #090909 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 60px;
     }
-    .hero-glow-1 {
-      position: absolute; top: -150px; right: -100px;
-      width: 650px; height: 650px;
-      background: radial-gradient(circle, rgba(0,170,220,0.14) 0%, transparent 70%);
-      pointer-events: none;
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(109,198,62,0.18) 0%, transparent 65%);
+      top: -160px; right: -120px; border-radius: 50%;
     }
-    .hero-glow-2 {
-      position: absolute; bottom: -100px; left: -100px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(109,198,62,0.07) 0%, transparent 70%);
-      pointer-events: none;
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(0,170,221,0.12) 0%, transparent 65%);
+      bottom: -80px; left: 8%; border-radius: 50%;
     }
     .hero-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 56px 28px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
       position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
-    .hero-eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--green);
-      margin-bottom: 20px; display: block;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(109,198,62,0.15);
+      border: 1px solid rgba(109,198,62,0.3);
+      color: #8ee06a;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.38rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #8ee06a;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
     }
     .hero h1 {
-      font-size: clamp(34px, 4vw, 54px);
-      font-weight: 800; line-height: 1.12;
-      color: var(--white); margin-bottom: 24px;
-      letter-spacing: -1.5px;
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.13;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.35rem;
     }
-    .hero h1 em { color: var(--green); font-style: normal; }
-    .hero-p {
-      font-size: 17px; color: rgba(255,255,255,0.6);
-      max-width: 460px; margin-bottom: 44px; line-height: 1.75;
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #8ee06a, #00AADD);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-green {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--green); color: var(--dark);
-      text-decoration: none; font-size: 15px; font-weight: 700;
-      padding: 14px 28px; border-radius: 4px;
-      transition: background 0.2s, transform 0.15s;
+    .hero-desc {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      max-width: 490px;
     }
-    .btn-green:hover { background: #7DD64E; transform: translateY(-1px); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: rgba(255,255,255,0.85);
-      text-decoration: none; font-size: 15px; font-weight: 600;
-      padding: 14px 28px; border-radius: 4px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
-    .hero-image-wrap {
-      display: flex; justify-content: center; align-items: center;
-      position: relative;
-    }
-    .hero-image-halo {
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Hero visual */
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .orbit-rig { width: 380px; height: 380px; position: relative; }
+    .orbit {
       position: absolute;
-      width: 520px; height: 300px;
-      background: radial-gradient(ellipse, rgba(0,170,220,0.24) 0%, rgba(0,100,180,0.12) 55%, transparent 75%);
+      border: 1px solid rgba(109,198,62,0.2);
       border-radius: 50%;
     }
-    /* Pool water ripple rings */
-    .pool-ripple {
-      position: absolute; border-radius: 50%;
-      border: 1.5px solid rgba(0,190,230,0.25);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      animation: ripple-out 4s ease-out infinite;
+    .orbit:nth-child(1) { inset: 0; animation: spin 22s linear infinite; }
+    .orbit:nth-child(2) { inset: 15%; animation: spin 15s linear infinite reverse; }
+    .orbit:nth-child(3) { inset: 30%; animation: spin 9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .orbit-dot {
+      position: absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      top: -5px; left: 50%;
+      transform: translateX(-50%);
     }
-    .pool-ripple:nth-child(2) { animation-delay: 1.3s; }
-    .pool-ripple:nth-child(3) { animation-delay: 2.6s; }
-    @keyframes ripple-out {
-      0%   { width: 80px; height: 50px; opacity: 0.6; }
-      100% { width: 520px; height: 320px; opacity: 0; }
-    }
-    /* Water surface shimmer line */
-    .pool-waterline {
-      position: absolute; bottom: 28%; left: 10%; right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,200,240,0.35) 30%, rgba(0,200,240,0.5) 50%, rgba(0,200,240,0.35) 70%, transparent);
-      animation: shimmer 3s ease-in-out infinite;
-    }
-    @keyframes shimmer {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1; }
-    }
-    .hero-image-wrap img {
-      width: 100%; max-width: 500px;
-      position: relative; z-index: 1;
-      animation: float 5s ease-in-out infinite;
-      filter: drop-shadow(0 28px 56px rgba(0,170,220,0.35));
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-12px); }
-    }
-
-    /* ─────────────────────────────────────────
-       STATS BAND
-    ───────────────────────────────────────── */
-    .stats-band {
-      background: var(--dark-2);
-      border-bottom: 1px solid #232323;
-      padding: 0;
-    }
-    .stats-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 28px;
-      display: flex; align-items: stretch; flex-wrap: wrap;
-    }
-    .stat-block {
-      flex: 1 1 180px;
-      display: flex; align-items: center; gap: 12px;
-      padding: 22px 24px;
-      border-right: 1px solid #282828;
-    }
-    .stat-block:last-child { border-right: none; }
-    .stat-ico {
-      width: 36px; height: 36px; flex-shrink: 0;
-      background: rgba(109,198,62,0.1); border-radius: 8px;
+    .orbit:nth-child(1) .orbit-dot { background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .orbit:nth-child(2) .orbit-dot { background: #00AADD; box-shadow: 0 0 14px #00AADD; }
+    .orbit:nth-child(3) .orbit-dot { background: #8b5cf6; box-shadow: 0 0 14px #8b5cf6; }
+    .orbit-center {
+      position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
     }
-    .stat-ico svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; }
-    .stat-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); }
+    .orbit-core {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, var(--accent), #00AADD);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 60px rgba(109,198,62,0.5), 0 0 120px rgba(0,170,221,0.2);
+    }
+    .orbit-core svg { width: 56px; height: 56px; }
 
-    /* ─────────────────────────────────────────
-       SHARED SECTION STYLES
-    ───────────────────────────────────────── */
-    section { padding: 96px 0; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
-    .sec-label {
-      display: block; font-size: 11px; font-weight: 700;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--green); margin-bottom: 14px;
+    /* ── Product categories (home) ── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
-    .sec-title {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800; line-height: 1.15;
-      letter-spacing: -0.5px; margin-bottom: 14px;
+    .cat-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+      overflow: hidden;
     }
-    .sec-sub {
-      font-size: 17px; color: var(--muted);
-      max-width: 560px; line-height: 1.75;
+    .cat-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(85,168,46,0.1);
+      transform: translateY(-3px);
     }
-    .sec-header-center { text-align: center; }
-    .sec-header-center .sec-sub { margin: 0 auto 60px; }
-    .sec-header { margin-bottom: 56px; }
-
-    /* fade-in */
-    .fade-in {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .cat-card-visual {
+      width: calc(100% + 4rem);
+      height: 140px;
+      margin: -2rem -2rem 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius) var(--radius) 0 0;
     }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* ─────────────────────────────────────────
-       PRODUCTS
-    ───────────────────────────────────────── */
-    #products { background: var(--light-gray); }
-    .products-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-    }
-    .prod-card {
-      background: var(--white); border-radius: 12px;
-      border: 1px solid var(--border); overflow: hidden;
-      transition: box-shadow 0.3s, transform 0.3s;
-      display: flex; flex-direction: column;
-    }
-    .prod-card:hover {
-      box-shadow: 0 24px 64px rgba(0,0,0,0.1);
-      transform: translateY(-5px);
-    }
-    .prod-img {
-      background: #f0f0f0;
-      height: 290px; padding: 40px;
-      display: flex; justify-content: center; align-items: center;
-    }
-    .prod-img img {
-      max-height: 210px; max-width: 100%;
-      object-fit: contain;
-    }
-    .prod-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
-    .prod-cat {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;
-    }
-    .prod-badge-sold {
-      display: inline-block; font-size: 11px; font-weight: 700;
-      background: #fee2e2; color: #dc2626;
-      padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
-    }
-    .prod-badge-stock {
-      display: inline-block; font-size: 11px; font-weight: 700;
-      background: #dcfce7; color: #16a34a;
-      padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
-    }
-    .prod-name { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-    .prod-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
-    .prod-features { list-style: none; margin-bottom: 28px; flex: 1; }
-    .prod-features li {
-      font-size: 13px; color: var(--muted);
-      padding: 5px 0; display: flex; align-items: center; gap: 9px;
-    }
-    .prod-features li::before {
-      content: ''; display: block; width: 6px; height: 6px;
-      background: var(--green); border-radius: 50%; flex-shrink: 0;
-    }
-    .prod-footer {
-      display: flex; align-items: center;
-      justify-content: flex-start; gap: 16px;
-      padding-top: 20px; border-top: 1px solid var(--border);
-      margin-top: auto;
-    }
-    .btn-dark {
+    .cat-card-visual svg { width: 52px; height: 52px; }
+    .cat-card h3 { font-size: 1.15rem; margin: 0 0 0.5rem; }
+    .cat-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+    .cat-card .cat-link {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--dark); color: #fff;
-      text-decoration: none; font-size: 14px; font-weight: 700;
-      padding: 11px 22px; border-radius: 4px;
-      transition: background 0.2s;
-      white-space: nowrap;
+      font-size: 0.84rem; font-weight: 600; color: var(--accent);
+      margin-top: 1rem;
+      transition: gap var(--transition);
     }
-    .btn-dark:hover { background: var(--green); color: var(--dark); }
+    .cat-card:hover .cat-link { gap: 10px; }
 
-    .btn-lucky {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, #6772e5 0%, #9b59b6 100%);
-      color: #fff; border: none; cursor: pointer;
-      font-size: 14px; font-weight: 700;
-      padding: 11px 22px; border-radius: 4px;
-      transition: opacity 0.2s, transform 0.1s;
-      white-space: nowrap;
+    /* ── Industries (home) ── */
+    .fp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
-    .btn-lucky:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-lucky:active { transform: translateY(0); }
-    .btn-lucky:disabled { opacity: 0.5; cursor: not-allowed; }
+    .fp-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .fp-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(85,168,46,0.08);
+    }
+    .fp-tag {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-light);
+      padding: 0.22rem 0.6rem; border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .fp-card h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .fp-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; }
 
-    /* ─────────────────────────────────────────
-       HOW IT WORKS
-    ───────────────────────────────────────── */
-    #how { background: var(--white); }
-    .steps {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 48px; position: relative;
+    /* ── Services strip (home) ── */
+    .services-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
     }
-    .steps::before {
+    .svc-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .svc-item {
+      display: flex; gap: 1rem;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+      transition: all var(--transition);
+    }
+    .svc-item:hover { border-color: var(--accent); }
+    .svc-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .svc-item p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+
+    .svc-panel {
+      background: linear-gradient(140deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+      color: #94a3b8;
+    }
+    .svc-panel h3 { font-size: 1.5rem; color: white; margin-bottom: 1rem; line-height: 1.35; }
+    .svc-panel p { font-size: 0.9rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    .svc-bullets { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2rem; }
+    .svc-bullet {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 0.875rem; color: #cbd5e1;
+    }
+    .svc-bullet::before {
       content: '';
-      position: absolute; top: 35px;
-      left: calc(16.66% + 16px); right: calc(16.66% + 16px);
-      height: 2px;
-      background: linear-gradient(90deg, var(--green), var(--cyan));
+      width: 6px; height: 6px;
+      background: #8ee06a; border-radius: 50%; flex-shrink: 0;
     }
-    .step { text-align: center; }
-    .step-num {
-      width: 70px; height: 70px; border-radius: 50%;
-      background: var(--dark); color: #fff;
-      font-size: 24px; font-weight: 800;
+
+    /* ── Why US-based ── */
+    .partners-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+    .partner-tile {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .partner-tile:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+    .partner-tile-ico {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--accent-light);
       display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 24px; position: relative; z-index: 1;
+      margin: 0 auto 0.85rem;
     }
-    .step-num.accent { background: var(--green); color: var(--dark); }
-    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-    .step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .partner-tile-ico svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 2; }
+    .partner-tile h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .partner-tile p { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* ─────────────────────────────────────────
-       TECHNOLOGY
-    ───────────────────────────────────────── */
-    #tech { background: var(--dark); }
-    #tech .sec-label { color: var(--green); }
-    #tech .sec-title { color: var(--white); }
-    #tech .sec-sub { color: rgba(255,255,255,0.5); margin-bottom: 60px; }
-    .tech-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    /* ── CTA banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--accent), #2f7a12);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
-    .tech-card {
-      background: var(--dark-2); border: 1px solid #252525;
-      border-radius: 10px; padding: 32px 28px;
-      transition: border-color 0.3s, transform 0.25s;
-    }
-    .tech-card:hover { border-color: var(--green); transform: translateY(-4px); }
-    .tech-ico {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: rgba(109,198,62,0.1);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-    }
-    .tech-ico svg { width: 22px; height: 22px; stroke: var(--green); fill: none; stroke-width: 2; }
-    .tech-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-    .tech-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+    .cta-banner h2 { font-size: 1.75rem; color: white; margin-bottom: 0.5rem; }
+    .cta-banner p { color: rgba(255,255,255,0.8); font-size: 1rem; }
 
-    /* ─────────────────────────────────────────
-       HOME & BUSINESS
-    ───────────────────────────────────────── */
-    #audience { background: var(--light-gray); }
-    .audience-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-    }
-    .aud-card {
-      border-radius: 12px; padding: 48px;
-      position: relative; overflow: hidden;
-    }
-    .aud-home {
-      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-      border: 1px solid #bbf7d0;
-    }
-    .aud-biz {
-      background: linear-gradient(135deg, #eff6ff, #dbeafe);
-      border: 1px solid #bfdbfe;
-    }
-    .aud-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 16px; display: block;
-    }
-    .aud-home .aud-tag { color: #15803d; }
-    .aud-biz  .aud-tag { color: #1d4ed8; }
-    .aud-card h3 { font-size: 26px; font-weight: 800; margin-bottom: 14px; line-height: 1.2; }
-    .aud-card p { font-size: 15px; color: var(--mid); line-height: 1.75; margin-bottom: 24px; }
-    .aud-list { list-style: none; margin-bottom: 32px; }
-    .aud-list li {
-      font-size: 14px; color: var(--mid);
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .aud-list li:last-child { border-bottom: none; }
-    .aud-home .aud-list li::before { content: '✓'; color: #16a34a; font-weight: 700; font-size: 13px; }
-    .aud-biz  .aud-list li::before { content: '✓'; color: #2563eb; font-weight: 700; font-size: 13px; }
-    .btn-green-sm {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--green); color: var(--dark);
-      text-decoration: none; font-size: 14px; font-weight: 700;
-      padding: 11px 22px; border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .btn-green-sm:hover { background: #7DD64E; }
-
-    /* ─────────────────────────────────────────
-       CTA BANNER
-    ───────────────────────────────────────── */
-    .cta-section {
-      background: var(--green); padding: 88px 0;
-    }
-    .cta-inner { max-width: 800px; margin: 0 auto; padding: 0 28px; text-align: center; }
-    .cta-inner h2 {
-      font-size: clamp(28px, 4vw, 46px);
-      font-weight: 800; color: var(--dark);
-      margin-bottom: 14px; letter-spacing: -0.5px;
-    }
-    .cta-inner p {
-      font-size: 17px; color: rgba(0,0,0,0.55);
-      margin-bottom: 44px; line-height: 1.7;
-    }
-    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-cta-dark {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--dark); color: #fff;
-      text-decoration: none; font-size: 15px; font-weight: 700;
-      padding: 14px 32px; border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .btn-cta-dark:hover { background: #222; }
-    .btn-cta-outline {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: transparent; color: var(--dark);
-      text-decoration: none; font-size: 15px; font-weight: 600;
-      padding: 14px 32px; border-radius: 4px;
-      border: 2px solid rgba(0,0,0,0.3);
-      transition: border-color 0.2s;
-    }
-    .btn-cta-outline:hover { border-color: var(--dark); }
-
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
-    footer {
-      background: var(--dark); color: #fff;
-      padding: 64px 0 32px;
-    }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px; padding-bottom: 48px;
-      border-bottom: 1px solid #242424;
-    }
-    .footer-brand .logo { display: inline-flex; }
-    .footer-brand p {
-      font-size: 14px; color: rgba(255,255,255,0.4);
-      margin-top: 16px; line-height: 1.75; max-width: 280px;
-    }
-    .footer-col h5 {
-      font-size: 11px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: rgba(255,255,255,0.35);
-      margin-bottom: 20px;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 12px; }
-    .footer-col a {
-      font-size: 14px; color: rgba(255,255,255,0.6);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-col a:hover { color: var(--green); }
-    .footer-bottom {
-      padding-top: 28px;
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 12px; flex-wrap: wrap;
-    }
-    .footer-bottom p, .footer-bottom a {
-      font-size: 13px; color: rgba(255,255,255,0.28);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-bottom a:hover { color: rgba(255,255,255,0.55); }
-    .footer-sep { color: rgba(255,255,255,0.15); }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
     @media (max-width: 960px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 48px; }
-      .hero-p { margin-left: auto; margin-right: auto; }
-      .hero-actions { justify-content: center; }
-      .hero-image-wrap img { max-width: 380px; }
-      .products-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; gap: 36px; }
-      .steps::before { display: none; }
-      .tech-grid { grid-template-columns: 1fr 1fr; }
-      .audience-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .nav-shop { display: none; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-btns { justify-content: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .cat-grid { grid-template-columns: 1fr; }
+      .services-strip { grid-template-columns: 1fr; }
+      .partners-strip { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      section { padding: 64px 0; }
-      .tech-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .stat-block { flex: 1 1 140px; padding: 18px 16px; }
-      .aud-card { padding: 32px 24px; }
-      .hero-image-wrap img { max-width: 280px; }
+      .partners-strip { grid-template-columns: repeat(2, 1fr); }
+      .cta-banner { text-align: center; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
-<nav id="nav">
+<!-- NAV -->
+<nav class="nav" id="mainNav">
   <div class="nav-inner">
-    <a href="https://eirintelligence.com" class="logo">
-      <img src="assets/logo.svg" alt="EIRintelligence" height="36">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.svg" alt="Eirintelligence Global" class="nav-logo-img" />
     </a>
-    <ul class="nav-links">
-      <li><a href="https://shop.eirintelligence.com/">Shop</a></li>
-      <li><a href="https://shop.eirintelligence.com/collections/all">Products</a></li>
-      <li><a href="https://shop.eirintelligence.com/pages/contact">Contact</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
       <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
     </ul>
-    <div class="nav-right">
-      <a href="https://shop.eirintelligence.com/collections/all" class="nav-shop">
-        Shop Now
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <button class="hamburger" id="ham" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mob">
-  <a href="https://shop.eirintelligence.com/">Shop</a>
-  <a href="https://shop.eirintelligence.com/collections/all">Products</a>
-  <a href="https://shop.eirintelligence.com/pages/contact">Contact</a>
-  <a href="about.html">About</a>
-  <a href="https://shop.eirintelligence.com/collections/all" class="mobile-shop">
-    Shop Now →
-  </a>
-</div>
-
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="hero" id="home">
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
-  <div class="hero-inner">
-    <div class="hero-text">
-      <span class="hero-eyebrow">Eirintelligence Global</span>
-      <h1>Intelligent robots that<br><em>actually work</em> for you.</h1>
-      <p class="hero-p">AI-powered task robots built for real life — not sci-fi. From your lawn to your pool, we make the chores disappear so you can focus on what matters.</p>
-      <div class="hero-actions">
-        <a href="https://shop.eirintelligence.com/collections/all" class="btn-green">
-          Explore Products
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#products" class="btn-ghost">See Our Robots ↓</a>
-      </div>
-    </div>
-    <div class="hero-image-wrap">
-      <div class="hero-image-halo"></div>
-      <div class="pool-ripple"></div>
-      <div class="pool-ripple"></div>
-      <div class="pool-ripple"></div>
-      <div class="pool-waterline"></div>
-      <img
-        src="https://shop.eirintelligence.com/cdn/shop/files/6.png?v=1772658380&width=800"
-        alt="Eirintelligence Robotic Pool Skimmer"
-        loading="eager"
-      />
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ STATS BAND ═══════════════════ -->
-<div class="stats-band">
-  <div class="stats-inner">
-    <div class="stat-block">
-      <div class="stat-ico">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      </div>
-      <span class="stat-label">AI-Powered Navigation</span>
-    </div>
-    <div class="stat-block">
-      <div class="stat-ico">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 0v20M2 12h20"/></svg>
-      </div>
-      <span class="stat-label">Ships to the US &amp; Worldwide</span>
-    </div>
-    <div class="stat-block">
-      <div class="stat-ico">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <span class="stat-label">European Safety Standards</span>
-    </div>
-    <div class="stat-block">
-      <div class="stat-ico">
-        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      </div>
-      <span class="stat-label">Headquartered in Ireland</span>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════ PRODUCTS ═══════════════════ -->
-<section id="products">
-  <div class="wrap">
-    <div class="sec-header-center fade-in">
-      <span class="sec-label">Our Robots</span>
-      <h2 class="sec-title">Built to do the work you'd rather skip</h2>
-      <p class="sec-sub">Each Eirintelligence robot is purpose-built for one task — and it does that task brilliantly.</p>
-    </div>
-
-    <div class="products-grid">
-      <!-- Robotic Pool Skimmer -->
-      <div class="prod-card fade-in">
-        <div class="prod-img" style="background:#e8f4f8;">
-          <img
-            src="https://shop.eirintelligence.com/cdn/shop/files/2.png?v=1772658380&width=600"
-            alt="Eirintelligence Robotic Pool Skimmer" loading="lazy"
-          />
-        </div>
-        <div class="prod-body">
-          <span class="prod-cat">Pool &amp; Pond Care</span>
-          <span class="prod-badge-stock">In Stock</span>
-          <h3 class="prod-name">Robotic Pool Skimmer</h3>
-          <p class="prod-desc">Solar-powered surface cleaner with 20+ hours of runtime. Keeps your pool crystal clear every day without any effort from you.</p>
-          <ul class="prod-features">
-            <li>10W solar charging + Type-C backup</li>
-            <li>20+ hours continuous battery life</li>
-            <li>Ultrasonic anti-collision system</li>
-            <li>Bluetooth &amp; App remote control (30m range)</li>
-            <li>IPX7 waterproof construction</li>
-            <li>Eco-friendly — near-zero running costs</li>
-          </ul>
-          <div class="prod-footer">
-            <a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-pool-skimmer" class="btn-dark">
-              Shop Now →
-            </a>
-            <button class="btn-lucky" id="btn-lucky-skimmer" onclick="handleLuckyBuy()">
-              🎲 I'm Feeling Lucky
-            </button>
-          </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Semiconductor Solutions Provider · United States</div>
+        <h1>Bridging U.S. semiconductor innovation with <em>global industry</em></h1>
+        <p class="hero-desc">Eirintelligence Global sources advanced semiconductor components from U.S. manufacturers and delivers distribution, technical support, and supply chain solutions to industrial customers worldwide.</p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn btn-primary btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Explore Solutions
+          </a>
+          <a href="contact.html" class="btn btn-ghost btn-lg">Contact Us</a>
         </div>
       </div>
 
-      <!-- Robotic Lawn Mower -->
-      <div class="prod-card fade-in">
-        <div class="prod-img">
-          <img
-            src="https://shop.eirintelligence.com/cdn/shop/files/3_f63afb81-3d9f-4c7f-8267-4c05a845cd56.png?v=1772659058&width=600"
-            alt="Eirintelligence Robotic Lawn Mower" loading="lazy"
-          />
-        </div>
-        <div class="prod-body">
-          <span class="prod-cat">Lawn Care</span>
-          <span class="prod-badge-sold">Sold Out — Back Soon</span>
-          <h3 class="prod-name">Robotic Lawn Mower</h3>
-          <p class="prod-desc">RTK precision mowing with centimetre-level accuracy. Covers up to 4,000 m² completely autonomously — rain or shine, even while you sleep.</p>
-          <ul class="prod-features">
-            <li>RTK navigation with 2cm precision</li>
-            <li>AI-powered 3D ToF obstacle avoidance</li>
-            <li>App control &amp; multi-zone scheduling</li>
-            <li>IPX6 waterproof + rain auto-return sensor</li>
-            <li>Adjustable cut height 25–60mm</li>
-            <li>Whisper-quiet — works day or night</li>
-          </ul>
-          <div class="prod-footer">
-            <a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-lawn-mower" class="btn-dark">
-              View Details →
-            </a>
+      <div class="hero-visual">
+        <div class="orbit-rig">
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit"><div class="orbit-dot"></div></div>
+          <div class="orbit-center">
+            <div class="orbit-core">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6">
+                <rect x="7" y="7" width="10" height="10" rx="1.5"/>
+                <path d="M9 7V3M12 7V3M15 7V3M9 21v-4M12 21v-4M15 21v-4M7 9H3M7 12H3M7 15H3M21 9h-4M21 12h-4M21 15h-4"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div style="text-align:center; margin-top:48px;" class="fade-in">
-      <a href="https://shop.eirintelligence.com/collections/all" class="btn-green">
-        View All Products →
-      </a>
-    </div>
   </div>
 </section>
 
-<!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
-<section id="how">
-  <div class="wrap">
-    <div class="sec-header-center fade-in">
-      <span class="sec-label">How It Works</span>
-      <h2 class="sec-title">Set it. Schedule it. Forget it.</h2>
-      <p class="sec-sub">Every Eirintelligence robot is designed to be running in minutes, then completely hands-off from there.</p>
+<!-- PRODUCT CATEGORIES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Product Portfolio</span>
+      <h2 class="section-title">Semiconductor components for every application</h2>
+      <p class="section-desc">From embedded processors to power management and sensing, we supply the components that power industrial automation, robotics, and connected devices.</p>
     </div>
-    <div class="steps">
-      <div class="step fade-in">
-        <div class="step-num">1</div>
-        <h3>Place &amp; Connect</h3>
-        <p>Unbox, place your robot, and pair it with the Eirintelligence app in minutes. No complex installation, no perimeter wires required.</p>
-      </div>
-      <div class="step fade-in">
-        <div class="step-num accent">2</div>
-        <h3>Set Your Schedule</h3>
-        <p>Define zones, set cleaning times, and customise preferences from your phone — from anywhere in the world, at any time.</p>
-      </div>
-      <div class="step fade-in">
-        <div class="step-num">3</div>
-        <h3>Relax &amp; Enjoy</h3>
-        <p>Your robot navigates autonomously, avoids all obstacles, returns to base when done, and sends you a status report. Job done.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════ TECHNOLOGY ═══════════════════ -->
-<section id="tech">
-  <div class="wrap">
-    <div class="sec-header fade-in">
-      <span class="sec-label">Technology</span>
-      <h2 class="sec-title" style="color:#fff;">The intelligence inside</h2>
-      <p class="sec-sub">Proprietary AI and sensor systems engineered for real-world performance — not lab conditions.</p>
-    </div>
-    <div class="tech-grid">
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    <div class="cat-grid">
+      <div class="cat-card" data-reveal>
+        <div class="cat-card-visual" style="background:linear-gradient(135deg,#eafbe0,#d3f5c0);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#468f24" stroke-width="1.6"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 6V3M12 6V3M15 6V3M9 21v-3M12 21v-3M15 21v-3M6 9H3M6 12H3M6 15H3M21 9h-3M21 12h-3M21 15h-3"/></svg>
         </div>
-        <h3>RTK Precision Navigation</h3>
-        <p>Real-time kinematic GPS positioning delivers 2cm accuracy. Your robot always knows exactly where it is and optimises every route.</p>
+        <h3>Microcontrollers &amp; Processors</h3>
+        <p>32-bit MCUs, embedded processors, and edge AI compute for real-time control, robotics, and industrial automation.</p>
+        <a href="products.html#mcu" class="cat-link">View microcontrollers →</a>
       </div>
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div class="cat-card" data-reveal>
+        <div class="cat-card-visual" style="background:linear-gradient(135deg,#e0f7fb,#c3edf5);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="1.6"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-8z"/></svg>
         </div>
-        <h3>AI 3D Obstacle Avoidance</h3>
-        <p>Time-of-Flight and ultrasonic sensors work together to detect and avoid obstacles in real time — pets, toys, furniture, and more.</p>
+        <h3>Power &amp; Analog ICs</h3>
+        <p>DC-DC converters, voltage regulators, motor drivers, and analog signal conditioning for demanding industrial environments.</p>
+        <a href="products.html#power" class="cat-link">View power &amp; analog →</a>
       </div>
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+      <div class="cat-card" data-reveal>
+        <div class="cat-card-visual" style="background:linear-gradient(135deg,#f0eafe,#e2d3f9);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
-        <h3>Full App Control</h3>
-        <p>Schedule, monitor, and manage your robots from anywhere via the mobile app. Set zones, track progress, and receive real-time alerts.</p>
-      </div>
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/></svg>
-        </div>
-        <h3>25% Longer Battery Life</h3>
-        <p>LiFePO4 and automotive-grade Li-Ion cells with faster charging than any leading competitor. Run longer, charge faster, last longer.</p>
-      </div>
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15"/></svg>
-        </div>
-        <h3>Auto Return &amp; Resume</h3>
-        <p>Automatically docks when battery is low, then resumes from the exact same spot. No missed coverage, ever.</p>
-      </div>
-      <div class="tech-card fade-in">
-        <div class="tech-ico">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        </div>
-        <h3>Solar &amp; Sustainable Power</h3>
-        <p>Our pool skimmer runs on integrated solar panels. Eco-friendly operation with near-zero running costs and a minimal carbon footprint.</p>
+        <h3>Sensors &amp; Wireless</h3>
+        <p>Position, motion, and environmental sensors alongside low-power RF and wireless connectivity for industrial IoT.</p>
+        <a href="products.html#sensors" class="cat-link">View sensors &amp; wireless →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════ HOME & BUSINESS ═══════════════════ -->
-<section id="audience">
-  <div class="wrap">
-    <div class="sec-header-center fade-in">
-      <span class="sec-label">Who It's For</span>
-      <h2 class="sec-title">Designed for home. Scaled for business.</h2>
-      <p class="sec-sub">Whether you're a homeowner wanting a perfect garden or a hotel manager who needs spotless facilities every day — we have a robot for you.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="aud-card aud-home fade-in">
-        <span class="aud-tag">For Home</span>
-        <h3>Your home, on autopilot.</h3>
-        <p>Spend your weekends doing what you love — not maintaining your yard or skimming your pool. Eirintelligence robots handle the outdoor chores quietly and reliably, every single day.</p>
-        <ul class="aud-list">
-          <li>Fully automated lawn mowing — no wires, no fuss</li>
-          <li>Pool surface cleaning on a daily schedule</li>
-          <li>Control and monitor from anywhere in the world</li>
-          <li>Whisper-quiet — won't disturb neighbours</li>
-          <li>Safe around children and pets</li>
-        </ul>
-        <a href="https://shop.eirintelligence.com/collections/all" class="btn-green-sm">Shop for Home →</a>
+<!-- INDUSTRIES WE SERVE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <span class="label">Industries We Serve</span>
+        <h2 class="section-title" style="margin-bottom:0">Where our components go to work</h2>
       </div>
-      <div class="aud-card aud-biz fade-in">
-        <span class="aud-tag">For Business</span>
-        <h3>Reduce costs. Raise standards.</h3>
-        <p>Hotels, resorts, golf clubs, and commercial properties use Eirintelligence robots to maintain their grounds and water features to the highest standard — with significantly less staff overhead.</p>
-        <ul class="aud-list">
-          <li>Multi-zone scheduling for large properties</li>
-          <li>Consistent results, 7 days a week</li>
-          <li>Measurable reduction in labour costs</li>
-          <li>European safety certified for commercial use</li>
-          <li>Dedicated business support &amp; service</li>
-        </ul>
-        <a href="https://shop.eirintelligence.com/pages/contact" class="btn-green-sm">Get in Touch →</a>
+      <a href="products.html" class="btn btn-outline">View all products →</a>
+    </div>
+    <div class="fp-grid">
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Automation</span>
+        <h4>Industrial Automation</h4>
+        <p>Control systems, PLCs, and factory automation equipment built on reliable, industrial-grade components.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Robotics</span>
+        <h4>Robotics &amp; Motion Control</h4>
+        <p>MCUs, motor drivers, and sensors for autonomous navigation, actuation, and precision motion control.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Automotive</span>
+        <h4>Automotive Electronics</h4>
+        <p>Power management and sensing components for electrification, ADAS, and in-vehicle systems.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">Energy</span>
+        <h4>Energy &amp; Power Systems</h4>
+        <p>High-efficiency power conversion for renewable energy, battery management, and grid infrastructure.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">AI &amp; Edge</span>
+        <h4>AI &amp; Edge Computing</h4>
+        <p>Edge processors and interface ICs for embedded vision, inference, and on-device intelligence.</p>
+      </div>
+      <div class="fp-card" data-reveal>
+        <span class="fp-tag">IoT</span>
+        <h4>Industrial IoT</h4>
+        <p>Low-power wireless connectivity and sensing components for connected industrial equipment.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════ CTA BANNER ═══════════════════ -->
-<div class="cta-section">
-  <div class="cta-inner fade-in">
-    <h2>Ready to put a robot to work?</h2>
-    <p>Explore our current lineup and find the right robot for your home or business — with free global shipping available.</p>
-    <div class="cta-btns">
-      <a href="https://shop.eirintelligence.com/collections/all" class="btn-cta-dark">
-        Shop All Products →
-      </a>
-      <a href="https://shop.eirintelligence.com/pages/contact" class="btn-cta-outline">
-        Contact Us
-      </a>
+<!-- SERVICES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="services-strip">
+      <div class="svc-list">
+        <div class="section-header" style="margin-bottom:1.75rem">
+          <span class="label">Services</span>
+          <h2 class="section-title">Sourcing, technical support &amp; supply chain</h2>
+          <p class="section-desc">We go beyond simple component supply — our team helps customers select the right parts and keeps supply chains moving.</p>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div>
+            <h4>Semiconductor Distribution</h4>
+            <p>Sourcing components from U.S. manufacturers and authorized suppliers, with procurement and order fulfillment handled end to end.</p>
+          </div>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <h4>Technical Solutions</h4>
+            <p>Component selection support, specification analysis, and application guidance from a team that understands the engineering, not just the price list.</p>
+          </div>
+        </div>
+        <div class="svc-item" data-reveal>
+          <div class="icon-box grad">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <h4>Supply Chain Services</h4>
+            <p>Procurement management and international logistics coordination that keep customers ahead of lead times and shortages.</p>
+          </div>
+        </div>
+        <a href="services.html" class="btn btn-primary" style="align-self:flex-start;margin-top:0.5rem;">Learn more about services →</a>
+      </div>
+
+      <div class="svc-panel">
+        <h3>Your U.S. bridge to global semiconductor supply</h3>
+        <p>We work directly with U.S. semiconductor manufacturers so industrial customers — wherever they are — get reliable access to the components they need, backed by real technical support.</p>
+        <div class="svc-bullets">
+          <div class="svc-bullet">Direct sourcing from U.S. semiconductor manufacturers</div>
+          <div class="svc-bullet">Component selection &amp; application support</div>
+          <div class="svc-bullet">Procurement and supply chain coordination</div>
+          <div class="svc-bullet">Serving industrial customers across Europe and beyond</div>
+          <div class="svc-bullet">Founder-led, technically grounded responsiveness</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Talk to our team</a>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer>
-  <div class="wrap">
+<!-- WHY U.S.-BASED -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Why We're U.S.-Based</span>
+      <h2 class="section-title">The operational center of our supply chain</h2>
+      <p class="section-desc" style="margin:0 auto">Our suppliers are U.S. semiconductor manufacturers. Being established in the United States lets us work directly with them — while serving customers globally.</p>
+    </div>
+    <div class="partners-strip">
+      <div class="partner-tile" data-reveal>
+        <div class="partner-tile-ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2"/></svg></div>
+        <h4>Supplier Proximity</h4>
+        <p>Direct relationships with U.S. semiconductor manufacturers</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-tile-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h4>Global Reach</h4>
+        <p>Serving industrial customers across Europe, with global expansion planned</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-tile-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 0v20M2 12h20"/></svg></div>
+        <h4>Business Development</h4>
+        <p>Access to industry networks, engineering resources, and technology partners</p>
+      </div>
+      <div class="partner-tile" data-reveal>
+        <div class="partner-tile-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h4>Operational Center</h4>
+        <p>Purchasing, sales, contracts, and technical support managed from the U.S.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="cta-banner">
+      <div>
+        <h2>Ready to talk about your project?</h2>
+        <p>Our team is here to help you find the right semiconductor solution.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo">
-          <img src="assets/logo.svg" alt="EIRintelligence" height="36">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.svg" alt="Eirintelligence Global" class="footer-logo-img" />
         </a>
-        <p>AI-powered task robots for home and business. Headquartered in Ireland, serving customers worldwide with intelligent, sustainable automation.</p>
+        <p>A U.S.-based semiconductor solutions provider — sourcing, technical support, and supply chain services for industrial customers worldwide.</p>
       </div>
       <div class="footer-col">
-        <h5>Shop</h5>
+        <h5>Products</h5>
         <ul>
-          <li><a href="https://shop.eirintelligence.com/">Shop</a></li>
-          <li><a href="https://shop.eirintelligence.com/collections/all">All Products</a></li>
-          <li><a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-lawn-mower">Robotic Lawn Mower</a></li>
-          <li><a href="https://shop.eirintelligence.com/products/eirintelligence-robotic-pool-skimmer">Robotic Pool Skimmer</a></li>
+          <li><a href="products.html#mcu">Microcontrollers &amp; Processors</a></li>
+          <li><a href="products.html#power">Power &amp; Analog ICs</a></li>
+          <li><a href="products.html#sensors">Sensors &amp; Wireless</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>Company</h5>
         <ul>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="https://shop.eirintelligence.com/pages/contact">Contact</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://robotics.eirintelligence.com/">Consumer Robotics →</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Support</h5>
+        <h5>Legal</h5>
         <ul>
-          <li><a href="https://shop.eirintelligence.com/pages/contact">Get Support</a></li>
-          <li><a href="https://shop.eirintelligence.com/pages/contact">Business Enquiries</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Eirintelligence Global, Inc. All rights reserved.</p>
-      <p>
-        Ireland &amp; US markets
-        <span class="footer-sep">&nbsp;·&nbsp;</span>
-        <a href="https://shop.eirintelligence.com/">shop.eirintelligence.com</a>
-      </p>
+      <span>© 2026 Eirintelligence Global, Inc. · All rights reserved · Incorporated in Wyoming, USA</span>
+      <span>United States 🇺🇸</span>
     </div>
   </div>
 </footer>
 
-<script>
-  // Nav scroll shadow
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
-  // Mobile hamburger
-  const ham = document.getElementById('ham');
-  const mob = document.getElementById('mob');
-  ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    mob.classList.toggle('open');
-    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
-  });
-  mob.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      ham.classList.remove('open');
-      mob.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // ── I'm Feeling Lucky — Stripe direct checkout ──────────────────────────
-  // REPLACE the value below with your Stripe Payment Link URL
-  // e.g. "https://buy.stripe.com/xxxxxxxxxxxx"
-  const STRIPE_POOL_SKIMMER_PAYMENT_LINK = 'https://buy.stripe.com/fZucMXfWLad21OP1sd2VG01';
-
-  function handleLuckyBuy() {
-    const btn = document.getElementById('btn-lucky-skimmer');
-    if (!STRIPE_POOL_SKIMMER_PAYMENT_LINK) {
-      alert('Stripe checkout coming soon!');
-      return;
-    }
-    btn.disabled = true;
-    btn.textContent = 'Loading…';
-    window.location.href = STRIPE_POOL_SKIMMER_PAYMENT_LINK;
-  }
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | Eirintelligence Global</title>
+  <meta name="description" content="Eirintelligence Global offers semiconductor distribution, technical solutions, and supply chain services for industrial customers sourcing U.S. semiconductor components." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Service cards ── */
+    .services-main {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+    .svc-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+    }
+    .svc-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(85,168,46,0.1);
+      transform: translateY(-3px);
+    }
+    .svc-card .icon-box { margin-bottom: 1.5rem; }
+    .svc-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+    .svc-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; flex: 1; }
+    .svc-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.84rem; font-weight: 600; color: var(--accent);
+      margin-top: 1.5rem;
+      transition: gap var(--transition);
+    }
+    .svc-card:hover .svc-card-link { gap: 10px; }
+
+    /* ── How we work ── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+    .process-step { text-align: center; position: relative; }
+    .step-num {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--accent), #00AADD);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; font-weight: 800; color: white;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 16px rgba(85,168,46,0.3);
+    }
+    .process-step h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .process-step p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Expertise detail ── */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .expertise-panel {
+      background: linear-gradient(140deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+    }
+    .expertise-panel h3 { font-size: 1.4rem; color: white; margin-bottom: 0.75rem; line-height: 1.35; }
+    .expertise-panel p { font-size: 0.9rem; color: #94a3b8; line-height: 1.8; margin-bottom: 1.5rem; }
+    .expertise-list { display: flex; flex-direction: column; gap: 1rem; }
+    .expertise-item {
+      display: flex; gap: 0.85rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+    }
+    .expertise-item h5 { font-size: 0.875rem; color: white; margin-bottom: 0.25rem; }
+    .expertise-item p { font-size: 0.8rem; color: #94a3b8; line-height: 1.55; margin: 0; }
+    .expertise-icon { flex-shrink: 0; margin-top: 2px; }
+    .expertise-icon svg { width: 16px; height: 16px; fill: #8ee06a; }
+
+    .expertise-features { display: flex; flex-direction: column; gap: 1rem; }
+    .ef-item {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .ef-item:hover { border-color: var(--accent); background: var(--accent-light); }
+    .ef-check {
+      width: 22px; height: 22px;
+      background: #d1fae5; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .ef-check svg { width: 11px; height: 11px; fill: #059669; }
+    .ef-item h5 { font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .ef-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+    @media (max-width: 960px) {
+      .services-main { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .expertise-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.svg" alt="Eirintelligence Global" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Services</span>
+    <h1>Sourcing, technical support &amp; supply chain</h1>
+    <p>We work closely with customers to understand their requirements and deliver semiconductor sourcing, technical support, and supply chain solutions — not just a transaction.</p>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">What We Offer</span>
+      <h2 class="section-title">Our core services</h2>
+      <p class="section-desc">Eirintelligence Global operates across three core areas — connecting U.S. semiconductor manufacturers with industrial customers worldwide.</p>
+    </div>
+    <div class="services-main">
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Semiconductor Distribution</h3>
+        <p>We source semiconductor components from U.S. manufacturers and authorized suppliers, managing supplier communication, procurement, order fulfillment, and international logistics coordination.</p>
+        <a href="contact.html" class="svc-card-link">Get a quote →</a>
+      </div>
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Technical Solutions</h3>
+        <p>Beyond product supply, we provide component selection assistance, specification analysis, and application support — coordinating directly between customers and semiconductor manufacturers.</p>
+        <a href="contact.html" class="svc-card-link">Talk to our team →</a>
+      </div>
+
+      <div class="svc-card" data-reveal>
+        <div class="icon-box grad">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Supply Chain Services</h3>
+        <p>Long lead times, component shortages, and global manufacturing complexity require active supply chain management. We help customers improve supply reliability through our U.S. sourcing network.</p>
+        <a href="contact.html" class="svc-card-link">Learn more →</a>
+      </div>
+
+    </div>
+
+    <!-- How we work -->
+    <div class="section-header">
+      <span class="label">Our Approach</span>
+      <h2 class="section-title">How we work with you</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step" data-reveal>
+        <div class="step-num">1</div>
+        <h4>Discovery</h4>
+        <p>We start by understanding your application, component requirements, and volume expectations in detail.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">2</div>
+        <h4>Sourcing &amp; Quotation</h4>
+        <p>We identify the right components from our U.S. sourcing network and provide a clear quotation.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">3</div>
+        <h4>Procurement &amp; Fulfillment</h4>
+        <p>We manage purchase orders, payment, and logistics — keeping your order on schedule end to end.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="step-num">4</div>
+        <h4>Ongoing Support</h4>
+        <p>Technical support and supply chain coordination continue throughout the life of your program.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE DETAIL -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="expertise-grid">
+      <div class="expertise-panel">
+        <h3>Semiconductor supply chain expertise you can rely on</h3>
+        <p>We go beyond simple product supply — helping customers navigate sourcing, component selection, and delivery so their programs stay on schedule.</p>
+        <div class="expertise-list">
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h5>Component Sourcing &amp; Selection</h5>
+              <p>Matching customer requirements to the right microcontroller, power, or sensing components.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <div>
+              <h5>Supplier &amp; Manufacturer Relations</h5>
+              <p>Direct communication with U.S. semiconductor manufacturers on pricing, availability, and lead times.</p>
+            </div>
+          </div>
+          <div class="expertise-item">
+            <div class="expertise-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div>
+              <h5>Global Logistics Coordination</h5>
+              <p>Managing shipment, customs, and delivery from U.S. suppliers to customers worldwide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header" style="margin-bottom:1.5rem">
+          <span class="label">Why Eirintelligence</span>
+          <h2 class="section-title">Why choose us?</h2>
+          <p class="section-desc">We combine direct access to U.S. semiconductor manufacturers with the responsiveness of a founder-led, technically grounded team.</p>
+        </div>
+        <div class="expertise-features">
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Direct U.S. manufacturer access</h5>
+              <p>We work directly with U.S. semiconductor suppliers to purchase, coordinate, and deliver components.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Tailored solutions</h5>
+              <p>We never apply a one-size-fits-all approach — every recommendation is built around your application.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>U.S. operations, global reach</h5>
+              <p>Operating from the United States — the center of the global semiconductor supply chain — while serving customers across Europe and beyond.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Engineering-informed selection</h5>
+              <p>Component recommendations grounded in application requirements, not just catalog listings.</p>
+            </div>
+          </div>
+          <div class="ef-item" data-reveal>
+            <div class="ef-check">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <h5>Long-term technical partnership</h5>
+              <p>Our relationship doesn't end at delivery — we provide ongoing support throughout your product's lifetime.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center">
+      <span class="label">Applications</span>
+      <h2 class="section-title">Industries &amp; applications we serve</h2>
+      <p class="section-desc" style="margin:0 auto">Our components and services support industries where reliable semiconductor supply makes a critical difference.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,220px));gap:1.25rem;margin-top:3rem;justify-content:center;">
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🏭</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Industrial Automation</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Control systems, PLCs, factory automation</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🤖</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Robotics</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Motion control, sensing, autonomous systems</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">🚗</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Automotive Electronics</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Electrification, ADAS, in-vehicle systems</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1.75rem 1rem;" data-reveal>
+        <div style="font-size:2rem;margin-bottom:0.75rem">⚡</div>
+        <h4 style="font-size:0.95rem;margin-bottom:0.3rem;">Energy &amp; Power</h4>
+        <p style="font-size:0.82rem;color:var(--text-muted)">Renewable energy, battery management, grid</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,var(--accent),#2f7a12);border-radius:var(--radius-lg);padding:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <h2 style="color:white;font-size:1.75rem;margin-bottom:0.5rem;">Ready to discuss your project?</h2>
+        <p style="color:rgba(255,255,255,0.8)">Our team is here to help you find the right semiconductor solution for your application.</p>
+      </div>
+      <a href="contact.html" class="btn btn-lg" style="background:white;color:var(--accent);">Get in Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.svg" alt="Eirintelligence Global" class="footer-logo-img" />
+        </a>
+        <p>A U.S.-based semiconductor solutions provider — sourcing, technical support, and supply chain services for industrial customers worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#mcu">Microcontrollers</a></li>
+          <li><a href="products.html#power">Power &amp; Analog</a></li>
+          <li><a href="products.html#sensors">Sensors &amp; Wireless</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Eirintelligence Global, Inc. · All rights reserved · Incorporated in Wyoming, USA</span>
+      <span>United States 🇺🇸</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

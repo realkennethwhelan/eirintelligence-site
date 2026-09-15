@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Eirintelligence Global</title>
+  <meta name="description" content="Get in touch with Eirintelligence Global. Enquire about semiconductor components, technical solutions, or supply chain services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Contact layout ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── Info panel ── */
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-info > p { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+
+    .info-items { display: flex; flex-direction: column; gap: 0.85rem; }
+    .info-item {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding: 1rem 1.1rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition);
+    }
+    .info-item:hover { border-color: var(--accent); }
+    .info-item-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-item-icon svg { width: 17px; height: 17px; fill: var(--accent); }
+    .info-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+    .info-value { font-size: 0.9rem; font-weight: 600; color: var(--primary); }
+
+    .response-box {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      color: #94a3b8;
+    }
+    .response-box h4 { color: white; font-size: 1rem; margin-bottom: 0.5rem; }
+    .response-box p { font-size: 0.84rem; line-height: 1.65; }
+    .response-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.85rem; }
+    .response-bullet {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; color: #cbd5e1;
+    }
+    .response-bullet::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: #8ee06a; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Form card ── */
+    .form-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+      box-shadow: var(--shadow);
+    }
+    .form-card h2 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .form-card > p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .form-success .success-icon {
+      width: 64px; height: 64px;
+      background: #d1fae5;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .form-success .success-icon svg { width: 30px; height: 30px; fill: #059669; }
+    .form-success h3 { font-size: 1.25rem; margin-bottom: 0.6rem; }
+    .form-success p { font-size: 0.9rem; color: var(--text-muted); max-width: 320px; margin: 0 auto; line-height: 1.65; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-toggle {
+      width: 100%;
+      background: none; border: none;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 0;
+      text-align: left;
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .faq-q { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+    .faq-chevron {
+      width: 20px; height: 20px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .faq-chevron svg { width: 10px; height: 10px; fill: var(--text-muted); transition: transform var(--transition); }
+    .faq-item.open .faq-chevron { background: var(--accent); border-color: var(--accent); }
+    .faq-item.open .faq-chevron svg { fill: white; transform: rotate(180deg); }
+    .faq-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-body p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; padding-bottom: 1.1rem; }
+    .faq-item.open .faq-body { max-height: 220px; }
+
+    @media (max-width: 960px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.svg" alt="Eirintelligence Global" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-cta"><a href="contact.html">Get in Touch</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="label">Contact</span>
+    <h1>Get in touch</h1>
+    <p>Whether you have a component enquiry, want to discuss a project, or need sourcing support — our team is ready to help.</p>
+  </div>
+</div>
+
+<!-- CONTACT MAIN -->
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Left: info -->
+      <div class="contact-info" data-reveal>
+        <p>We'd love to hear from you. Send us a message using the form and a member of our team will respond as soon as possible, typically within one business day.</p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Location</div>
+              <div class="info-value">United States</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Website</div>
+              <div class="info-value">eirintelligence.com</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Company</div>
+              <div class="info-value">Eirintelligence Global, Inc.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="response-box">
+          <h4>What to expect</h4>
+          <p>After submitting your message, here's what happens next:</p>
+          <div class="response-list">
+            <div class="response-bullet">We'll review your enquiry carefully</div>
+            <div class="response-bullet">A team member will respond within 1 business day</div>
+            <div class="response-bullet">For component enquiries, we may arrange a technical call</div>
+            <div class="response-bullet">We'll provide a tailored recommendation or quote</div>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.85rem;">Quick Links</div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a href="products.html" style="font-size:0.875rem;color:var(--accent);display:flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Browse our product portfolio
+            </a>
+            <a href="services.html" style="font-size:0.875rem;color:var(--accent);display:flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Learn about our services
+            </a>
+            <a href="about.html" style="font-size:0.875rem;color:var(--accent);display:flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              About Eirintelligence Global
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="form-card" data-reveal>
+        <h2>Send us a message</h2>
+        <p>Fill in the form below and we'll get back to you shortly.</p>
+
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="first_name" class="form-control" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="last_name" class="form-control" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="jane@company.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="org">Company</label>
+            <input type="text" id="org" name="organisation" class="form-control" placeholder="Company name" />
+          </div>
+
+          <div class="form-group">
+            <label for="topic">Topic *</label>
+            <select id="topic" name="topic" class="form-control" required>
+              <option value="">Select a topic…</option>
+              <option value="Component Enquiry">Component Enquiry</option>
+              <option value="Request a Quote">Request a Quote</option>
+              <option value="Technical Solutions">Technical Solutions</option>
+              <option value="Supply Chain / Distribution Partnership">Supply Chain / Distribution Partnership</option>
+              <option value="Technical Support">Technical Support</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us about your application, component requirements, or question. The more detail you provide, the better we can help." required></textarea>
+          </div>
+
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="consent" required />
+            <label for="consent">I consent to Eirintelligence Global storing my submitted information to respond to my enquiry. I understand my data will be handled in accordance with the <a href="#" style="color:var(--accent)">privacy policy</a>.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:0.9rem;">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Message sent!</h3>
+          <p>Thank you for reaching out. We've received your message and will get back to you within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto">
+      <div class="section-header" style="text-align:center">
+        <span class="label">FAQ</span>
+        <h2 class="section-title">Frequently asked questions</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false">
+            <span class="faq-q">What types of customers do you work with?</span>
+            <div class="faq-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </button>
+          <div class="faq-body">
+            <p>We work with industrial equipment manufacturers, robotics and automation companies, automotive electronics developers, and energy systems businesses. If your product needs reliably sourced U.S. semiconductor components, we're likely able to help.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false">
+            <span class="faq-q">Can you help with component selection if we're not sure what we need?</span>
+            <div class="faq-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </button>
+          <div class="faq-body">
+            <p>Yes — this is one of the most valuable things we do. Rather than just listing components, we take the time to understand your application and requirements, then recommend the most appropriate solution.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false">
+            <span class="faq-q">Do you provide ongoing technical support?</span>
+            <div class="faq-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </button>
+          <div class="faq-body">
+            <p>Absolutely. Technical support is a core part of what we offer — from component selection through to application questions after delivery. Our relationship doesn't end at the sale.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false">
+            <span class="faq-q">How long does delivery typically take?</span>
+            <div class="faq-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </button>
+          <div class="faq-body">
+            <p>Lead times vary by component and manufacturer. We'll always confirm expected lead times upfront when you request a quote or place an order.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-toggle" aria-expanded="false">
+            <span class="faq-q">Can you source directly from U.S. manufacturers?</span>
+            <div class="faq-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          </button>
+          <div class="faq-body">
+            <p>Yes. As a U.S.-based company, we work directly with American semiconductor manufacturers and suppliers to source, purchase, and deliver components to customers worldwide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="assets/logo.svg" alt="Eirintelligence Global" class="footer-logo-img" />
+        </a>
+        <p>A U.S.-based semiconductor solutions provider — sourcing, technical support, and supply chain services for industrial customers worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="products.html#mcu">Microcontrollers</a></li>
+          <li><a href="products.html#power">Power &amp; Analog</a></li>
+          <li><a href="products.html#sensors">Sensors &amp; Wireless</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Eirintelligence Global, Inc. · All rights reserved · Incorporated in Wyoming, USA</span>
+      <span>United States 🇺🇸</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
