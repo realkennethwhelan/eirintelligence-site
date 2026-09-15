@@ -77,9 +77,6 @@
       color: var(--accent); background: var(--accent-light);
       padding: 0.22rem 0.6rem; border-radius: 4px;
     }
-    .product-partner {
-      font-size: 0.72rem; color: var(--text-muted);
-    }
 
     .product-card h3 { font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.4; }
     .product-card .tagline {
@@ -119,36 +116,6 @@
       border: 1px solid var(--border);
       padding: 0.2rem 0.6rem;
       border-radius: 20px;
-    }
-
-    /* ── Why source section ── */
-    .why-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
-      gap: 1.25rem;
-      justify-content: center;
-    }
-    .pcard {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: all var(--transition);
-    }
-    .pcard:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-2px); }
-    .pcard-emoji { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
-    .pcard h4 { font-size: 1rem; margin-bottom: 0.3rem; }
-    .pcard p { font-size: 0.82rem; color: var(--text-muted); }
-
-    .mfr-badge {
-      width: 56px; height: 56px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #00AADD);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em;
-      color: white;
     }
 
     @media (max-width: 700px) {
@@ -216,7 +183,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">MCU · Industrial</span>
-              <span class="product-partner">Microchip</span>
             </div>
             <h3>32-Bit Industrial Microcontrollers</h3>
             <p class="tagline">Real-Time Control for Demanding Environments</p>
@@ -234,7 +200,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Processor · Edge AI</span>
-              <span class="product-partner">Texas Instruments</span>
             </div>
             <h3>Edge AI &amp; Embedded Processors</h3>
             <p class="tagline">On-Device Intelligence for Embedded Vision</p>
@@ -252,7 +217,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Processor · Real-Time</span>
-              <span class="product-partner">Texas Instruments</span>
             </div>
             <h3>Real-Time Control Processors</h3>
             <p class="tagline">Deterministic Performance for Motion &amp; Control</p>
@@ -284,7 +248,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Power · DC-DC</span>
-              <span class="product-partner">Analog Devices</span>
             </div>
             <h3>DC-DC Power Converters &amp; Regulators</h3>
             <p class="tagline">Efficient Power Conversion for Industrial Systems</p>
@@ -302,7 +265,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Analog · Signal Chain</span>
-              <span class="product-partner">Analog Devices</span>
             </div>
             <h3>Analog Signal Conditioning ICs</h3>
             <p class="tagline">Precision Amplification &amp; Interface</p>
@@ -320,7 +282,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Power · Motor Drive</span>
-              <span class="product-partner">onsemi</span>
             </div>
             <h3>Motor Driver ICs</h3>
             <p class="tagline">Precision Drive for Motion &amp; Robotics</p>
@@ -352,7 +313,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Sensor · Motion</span>
-              <span class="product-partner">Analog Devices</span>
             </div>
             <h3>Industrial Position &amp; Motion Sensors</h3>
             <p class="tagline">Accurate Sensing for Automation &amp; Robotics</p>
@@ -370,7 +330,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Wireless · RF</span>
-              <span class="product-partner">Skyworks</span>
             </div>
             <h3>Low-Power Wireless &amp; RF Modules</h3>
             <p class="tagline">Connectivity for Industrial IoT</p>
@@ -388,7 +347,6 @@
           <div class="product-card-body">
             <div class="product-meta">
               <span class="product-tag">Sensor · Environmental</span>
-              <span class="product-partner">onsemi</span>
             </div>
             <h3>Environmental &amp; Current Sensors</h3>
             <p class="tagline">Monitoring for Power &amp; Process Systems</p>
@@ -402,49 +360,6 @@
       </div>
     </div><!-- /sensors -->
 
-  </div>
-</section>
-
-<!-- MANUFACTURERS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-header" style="text-align:center">
-      <span class="label">Semiconductor Manufacturers</span>
-      <h2 class="section-title">The U.S. supply chain we work within</h2>
-      <p class="section-desc" style="margin:0 auto">We source components from leading U.S. semiconductor manufacturers, spanning analog, power, microcontroller, and wireless technologies.</p>
-    </div>
-    <div class="why-cards">
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">TI</div>
-        <h4>Texas Instruments</h4>
-        <p>Analog, power management &amp; embedded processing</p>
-      </div>
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">ADI</div>
-        <h4>Analog Devices</h4>
-        <p>High-performance analog &amp; signal processing</p>
-      </div>
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">MCHP</div>
-        <h4>Microchip</h4>
-        <p>Microcontrollers, memory &amp; mixed-signal ICs</p>
-      </div>
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">ON</div>
-        <h4>onsemi</h4>
-        <p>Power management &amp; sensing solutions</p>
-      </div>
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">SLAB</div>
-        <h4>Silicon Labs</h4>
-        <p>Wireless connectivity &amp; IoT solutions</p>
-      </div>
-      <div class="pcard" data-reveal>
-        <div class="mfr-badge">SWKS</div>
-        <h4>Skyworks</h4>
-        <p>RF front-end &amp; wireless connectivity</p>
-      </div>
-    </div>
   </div>
 </section>
 
